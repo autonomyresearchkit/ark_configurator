@@ -17,12 +17,11 @@ def setupHusky():
     stiction_compensator_yaw = 0.01
 
     vehicle_length = 1.0    #[m]
-    replan_enabled = True
     vehicle_gear = 1    #0 - Mixed, 1 - Forward Only, 2 - Backward only.
     curve_type = 1  #0 - Linear, 1 - Curves.
 
-    goal_threshold = 0.15
-    orientation_corr_threshold = 0.05
+    goal_threshold = 0.15		#[m] - How close to the goal for "success"
+    orientation_corr_threshold = 0.05	#[rad] - How close to goal orientation for "success"
 
     mpc_horizon = 2.5   #The predicition horizon [s].
     min_lookahead = 2.0 #Minimum distance [in path parameter] ahead of the robot to do tracking and collision checks.
@@ -41,8 +40,11 @@ def setupHusky():
     footprint.points.append(Point32(0.5, 0.33, 0))
     footprint.points.append(Point32(0.5, -0.33, 0))
 
+    print "Waiting for configuration service..."
     rospy.wait_for_service("configure_ark")
+
     try:
+        print "Reconfiguring ARK..."
         reConfigSettings = rospy.ServiceProxy('configure_ark', ArkConfigSettings)
         resp = reConfigSettings(max_fwd_velocity, max_rev_velocity, min_fwd_velocity, max_accel, max_decel, max_ang_velocity, max_ang_accel, max_lateral_accel, vehicle_length, vehicle_gear, curve_type, goal_threshold, orientation_corr_threshold, mpc_horizon, min_lookahead, max_lookahead, horizon_percent_change, lookahead_smoother, lookahead_factor, curvature_slowdown, curvature_slowdown_multiplier, footprint)
 
