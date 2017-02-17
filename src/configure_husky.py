@@ -16,7 +16,11 @@ def setupHusky():
     stiction_compensator_fwd = 0.1
     stiction_compensator_yaw = 0.01
 
-    vehicle_length = 1.0    #[m]
+    vehicle_length = 1.042    #[m]
+    vehicle_width = 0.661    #[m]
+    stopping_distance_1M = 0.30	#[m] - Stopping distance when traveling 1m/s
+    lidar_spacing = 0.91 #[m] - spacing between the lidar
+
     vehicle_gear = 1    #0 - Mixed, 1 - Forward Only, 2 - Backward only.
     curve_type = 1  #0 - Linear, 1 - Curves.
 
@@ -34,19 +38,13 @@ def setupHusky():
     curvature_slowdown = 0.45   #Threshold [rad] on path curvature above which to slow down the robot.
     curvature_slowdown_multiplier = 1.2
 
-    footprint = Polygon()
-    footprint.points.append(Point32(-0.5, -0.33, 0))
-    footprint.points.append(Point32(-0.5, 0.33, 0))
-    footprint.points.append(Point32(0.5, 0.33, 0))
-    footprint.points.append(Point32(0.5, -0.33, 0))
-
     print "Waiting for configuration service..."
     rospy.wait_for_service("configure_ark")
 
     try:
         print "Reconfiguring ARK..."
         reConfigSettings = rospy.ServiceProxy('configure_ark', ArkConfigSettings)
-        resp = reConfigSettings(max_fwd_velocity, max_rev_velocity, min_fwd_velocity, max_accel, max_decel, max_ang_velocity, max_ang_accel, max_lateral_accel, vehicle_length, vehicle_gear, curve_type, goal_threshold, orientation_corr_threshold, mpc_horizon, min_lookahead, max_lookahead, horizon_percent_change, lookahead_smoother, lookahead_factor, curvature_slowdown, curvature_slowdown_multiplier, footprint)
+        resp = reConfigSettings(max_fwd_velocity, max_rev_velocity, min_fwd_velocity, max_accel, max_decel, max_ang_velocity, max_ang_accel, max_lateral_accel, vehicle_length, vehicle_width, stopping_distance_1M, lidar_spacing, vehicle_gear, curve_type, goal_threshold, orientation_corr_threshold, mpc_horizon, min_lookahead, max_lookahead, horizon_percent_change, lookahead_smoother, lookahead_factor, curvature_slowdown, curvature_slowdown_multiplier)
 
         print resp.information
     except rospy.ServiceException, e:
