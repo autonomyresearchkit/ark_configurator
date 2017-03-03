@@ -5,7 +5,6 @@ project(ark_robot_configurations)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
-  ark_rosbridge_client
   rospy
 )
 
@@ -101,7 +100,7 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES ark_robot_configurations
-#  CATKIN_DEPENDS ark_rosbridge_client rospy
+#  CATKIN_DEPENDS rospy
 #  DEPENDS system_lib
 )
 
