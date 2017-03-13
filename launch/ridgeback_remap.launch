@@ -1,4 +1,5 @@
 <launch>
-  <node pkg="topic_tools" type="relay" name="raw_odom_relay" args="ridgeback_velocity_controller/odom /platform_control/odom" />
-  <node pkg="topic_tools" type="relay" name="raw_cmd_vel_relay" args="cmd_vel /platform_control/cmd_vel" />
+  <node pkg="topic_tools" type="relay" name="raw_odom_relay" args="/ridgeback_velocity_controller/odom /platform_control/odom" />
+  <node pkg="topic_tools" type="relay" name="raw_cmd_vel_relay" args="/platform_control/cmd_vel /cmd_vel" />
+  <node pkg="topic_tools" type="relay" name="raw_odom2_relay" args="/ridgeback_velocity_controller/odom /platform_odometry" />
 </launch>
