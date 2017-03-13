@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from ark_configurator.srv import *
+from ark_robot_configurations.srv import *
 from geometry_msgs.msg import Polygon, Point32
 import rospy
 
@@ -16,10 +16,11 @@ def setupHusky():
     stiction_compensator_fwd = 0.1
     stiction_compensator_yaw = 0.01
 
-    vehicle_length = 1.042    #[m]
-    vehicle_width = 0.661    #[m]
-    stopping_distance_1M = 0.30	#[m] - Stopping distance when traveling 1m/s
-    lidar_spacing = 0.91 #[m] - spacing between the lidar
+    vehicle_length = 0.960    #[m]
+    vehicle_width = 0.800    #[m]
+    stopping_distance_1M = 0.40	#[m] - Stopping distance when traveling 1m/s
+    lidar_spacing = 0.8254 #[m] - spacing between the lidar
+    laser_fov = 270.0 #[deg]
 
     vehicle_gear = 1    #0 - Mixed, 1 - Forward Only, 2 - Backward only.
     curve_type = 1  #0 - Linear, 1 - Curves.
@@ -44,7 +45,7 @@ def setupHusky():
     try:
         print "Reconfiguring ARK..."
         reConfigSettings = rospy.ServiceProxy('configure_ark', ArkConfigSettings)
-        resp = reConfigSettings(max_fwd_velocity, max_rev_velocity, min_fwd_velocity, max_accel, max_decel, max_ang_velocity, max_ang_accel, max_lateral_accel, vehicle_length, vehicle_width, stopping_distance_1M, lidar_spacing, vehicle_gear, curve_type, goal_threshold, orientation_corr_threshold, mpc_horizon, min_lookahead, max_lookahead, horizon_percent_change, lookahead_smoother, lookahead_factor, curvature_slowdown, curvature_slowdown_multiplier)
+        resp = reConfigSettings(max_fwd_velocity, max_rev_velocity, min_fwd_velocity, max_accel, max_decel, max_ang_velocity, max_ang_accel, max_lateral_accel, vehicle_length, vehicle_width, stopping_distance_1M, lidar_spacing, laser_fov, vehicle_gear, curve_type, goal_threshold, orientation_corr_threshold, mpc_horizon, min_lookahead, max_lookahead, horizon_percent_change, lookahead_smoother, lookahead_factor, curvature_slowdown, curvature_slowdown_multiplier)
 
         print resp.information
     except rospy.ServiceException, e:
