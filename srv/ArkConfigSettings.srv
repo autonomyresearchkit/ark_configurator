@@ -13,7 +13,7 @@ float64 lidar_spacing
 float64 laser_fov
 int8 vehicle_gear
 int8 curve_type
-float64 goal_threshold 
+float64 goal_threshold
 float64 orientation_corr_threshold
 float64 mpc_horizon
 float64 min_lookahead
@@ -22,7 +22,6 @@ float64 horizon_percent_change
 float64 lookahead_smoother
 float64 lookahead_factor
 float64 curvature_slowdown
-float64 curvature_slowdown_multiplier
 ---
 bool result
 string information
