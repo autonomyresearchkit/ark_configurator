@@ -4,6 +4,7 @@ from ark_bridge.msg import ArkConfigSettingsResponse, ArkConfigSettingsCall
 import time
 import rospy
 import yaml
+import sys
 
 def response_callback(data):
   global started
@@ -14,10 +15,10 @@ def response_callback(data):
 def configure_ark(yaml_file):
 
     # Read the yammygang file
-    yaml_lib
+    yaml_lib = ""
     with open(yaml_file, 'r') as stream:
         try:
-            yaml_lib = yaml.load(yaml_file)
+            yaml_lib = yaml.load(stream)
         except yaml.YAMLError as exc:
             print(exc)
 
@@ -42,9 +43,9 @@ def configure_ark(yaml_file):
     settingsMsg.max_accel = yaml_lib["ark_config"]["max_accel"]                     #[m/s^2]
     settingsMsg.max_decel = yaml_lib["ark_config"]["max_decel"]       #[m/s^2]
     settingsMsg.max_ang_velocity = yaml_lib["ark_config"]["max_ang_velocity"] #[rad/s]
-    settingsMsg.max_ang_accel = yaml_lib["ark_config"]["max_ang_acccel"]    #[rad/s^2]
+    settingsMsg.max_ang_accel = yaml_lib["ark_config"]["max_ang_accel"]    #[rad/s^2]
     settingsMsg.max_lateral_accel = yaml_lib["ark_config"]["max_lateral_accel"] #[m/s^2] Max lateral accel during curves. Affects velocity.
-    settingsMsg.vehicle_length = yaml_lib["ark_config"]["vehichle_length"]    #[m]
+    settingsMsg.vehicle_length = yaml_lib["ark_config"]["vehicle_length"]    #[m]
     settingsMsg.vehicle_width = yaml_lib["ark_config"]["vehicle_width"]   #[m]
     settingsMsg.stopping_distance_1M = yaml_lib["ark_config"]["stopping_distance_1M"]	#[m] - Stopping distance when traveling 1m/s
     settingsMsg.lidar_spacing = yaml_lib["ark_config"]["lidar_spacing"] #[m] - spacing between the lidar
@@ -62,10 +63,9 @@ def configure_ark(yaml_file):
     settingsMsg.curvature_slowdown = yaml_lib["ark_config"]["curvature_slowdown"]   #Threshold [rad] on path curvature above which to slow down the robot.
 
     pub.publish(settingsMsg)
-    rospy.spin()
 
     print "Done"
 
 if __name__ == "__main__":
     yaml_file_path = None
-    configure_ark(yaml_file_path)
+    configure_ark(sys.argv[1])
