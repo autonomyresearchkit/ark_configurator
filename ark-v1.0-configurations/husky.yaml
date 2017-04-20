@@ -24,5 +24,8 @@ ark_config:
     lookahead_smoother: 0.4
     lookahead_factor: 1.45
     curvature_slowdown: 0.6
-
+    # Goes to -> /platform_control/odom
+    odometry_topic: "/husky_velocity_controller/odom"
+    # Goes to -> /platform_control/cmd_vel
+    cmd_vel_topic: "/husky_velocity_controller/cmd_vel"
     
