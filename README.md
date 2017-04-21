@@ -1,6 +1,3 @@
-<p>tl;dr To configure the ark, run:</p>
-<pre>./ark-v1.0-configure.py ../ark-v1.0-configurations/ridgeback.yaml</pre>
-
 <div class="wiki-content"> <h3> about the ark_robot_configurations tool: </h3> <p> This tool allows you to easily set 
 up the Clearpath Robotics' ARK for use with your robot. This tool uses a ROS Message sent over the network to the ARK 
 to configure its autonomous navigation settings. The rest of the readme will be an instructional tutorial on how to 
