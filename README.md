@@ -13,10 +13,11 @@ how to utilize the ARK, the ARK API, and how to purchase an ARK.</li> </ol>
 <h3>Configuring the ARK via YAML</h3> 
 <h3>Sharing your robot 
 configuration</h3> <p>To make your robot configuration available for other users, add your YAML file to the ark-v1.0-configurations directory and make a pull request to the http://github.com/autonomyresearchkit/ark_robot_configurations repository 
-<h3> ROS Message Definition: </h3> <table>
+
+<h3> ROS Message Definition: </h3> 
+<table>
   <tr>
     <th>ArkConfigSettingsCall.msg</th>
-    <th></th>
   </tr>
   <tr>
   <td>double max_fwd_velocity</td>
