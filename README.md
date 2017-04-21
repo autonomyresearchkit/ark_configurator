@@ -11,6 +11,8 @@ how to utilize the ARK, the ARK API, and how to purchase an ARK.</li> </ol>
 
 <h3>Determining your variables</h3> 
 <h3>Configuring the ARK via YAML</h3> 
+Take a template .yaml file from the templates/example.yaml file. Use the above instructions (Determining your variables) to find proper values to fill in. Some of them are straight forward, and others will require using the documentation provided in this README.md to configure your robot.
+
 <h3>Sharing your robot 
 configuration</h3> <p>To make your robot configuration available for other users, add your YAML file to the ark-v1.0-configurations directory and make a pull request to the http://github.com/autonomyresearchkit/ark_robot_configurations repository 
 
