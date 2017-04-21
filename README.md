@@ -13,6 +13,39 @@ how to utilize the ARK, the ARK API, and how to purchase an ARK.</li> </ol>
 <h3>Configuring the ARK via YAML</h3> 
 Take a template .yaml file from the templates/example.yaml file. Use the above instructions (Determining your variables) to find proper values to fill in. Some of them are straight forward, and others will require using the documentation provided in this README.md to configure your robot.
 
+example.yaml
+<pre>
+# CONFIGURATION EXAMPLE TAKEN FROM RIDGEBACK PARAMETERS. THESE WILL NOT WORK ON YOUR ROBOT AND YOU MUST CHANGE THEM ALL.
+ark_config:
+    max_fwd_velocity: 1.0
+    max_rev_velocity: 1.0
+    min_fwd_velocity: 0.05
+    max_accel: 0.3
+    max_decel: -0.3
+    max_ang_velocity: 1.0
+    max_ang_accel: 0.3
+    max_lateral_accel: 0.3
+    vehicle_length: 0.960
+    vehicle_width: 0.800
+    stopping_distance_1M: 0.40
+    lidar_spacing: 0.8254
+    laser_fov: 270.0
+    vehicle_gear: 1
+    curve_type: 1 
+    goal_threshold: 0.15
+    orientation_corr_threshold: 0.05
+    mpc_horizon: 3.0
+    min_lookahead: 2.0
+    max_lookahead: 3.0
+    horizon_percent_change: 0.06
+    lookahead_smoother: 0.4
+    lookahead_factor: 1.45
+    curvature_slowdown: 0.6
+
+    
+
+</pre>
+
 <h3>Sharing your robot 
 configuration</h3> <p>To make your robot configuration available for other users, add your YAML file to the ark-v1.0-configurations directory and make a pull request to the http://github.com/autonomyresearchkit/ark_robot_configurations repository 
 
